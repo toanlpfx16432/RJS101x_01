@@ -7,6 +7,7 @@ class StaffList extends Component {
         super(pros)
         this.state={
             selectedStaff: null,
+            columDefault: "col-12 col-md-6 col-lg-4 mt-3"
         }
     }
 
@@ -16,6 +17,11 @@ class StaffList extends Component {
         })
     }
 
+    onColumSelect(col) {
+        this.setState({
+            columDefault:col
+        })
+    }
 
     renderStaff(staff) {
         if (staff != null) {
@@ -42,7 +48,7 @@ class StaffList extends Component {
     render() {
         const staffList = this.props.staffs.map((staff) => {
             return (
-                <div className="col-12 col-md-6 col-lg-4 mt-3">
+                <div className={this.state.columDefault}>
                     <Card key={staff.id} onClick={() => this.onStaffSelect(staff)} >
                         <CardBody>
                             <CardTitle>{staff.name}</CardTitle>
@@ -54,6 +60,16 @@ class StaffList extends Component {
         
         return (
                 <div className="container">
+                    <div className="row m-4">
+                        <button onClick={() => this.onColumSelect('col-md-2 mt-1')} className='btn btn-success mr-3'> 6 cột
+                        </button>
+                        <button onClick={() => this.onColumSelect('col-md-3 mt-1')} className='btn btn-success mr-3'> 4 cột
+                        </button>
+                        <button onClick={() => this.onColumSelect('col-md-6 mt-1')} className='btn btn-success mr-3'> 2 cột 
+                        </button>
+                        <button onClick={() => this.onColumSelect('col-md-12 mt-1')} className='btn btn-success mr-3'> 1 cột
+                         </button>
+                    </div>
                     <div className="row">{staffList}</div>
                     <div className="row mt-5">
                         {this.renderStaff(this.state.selectedStaff)}
