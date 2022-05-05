@@ -63,13 +63,13 @@ class StaffList extends Component {
         return (
                 <div className="container">
                     <div className="row m-3">
-                        <button onClick={() => this.onColumSelect('col-md-2 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 6 cột
+                        <button onClick={() => this.onColumSelect('col-md-2 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 6 cột
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-3 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 4 cột
+                        <button onClick={() => this.onColumSelect('col-md-3 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 4 cột
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-6 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 2 cột 
+                        <button onClick={() => this.onColumSelect('col-md-6 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 2 cột 
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-12 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 1 cột
+                        <button onClick={() => this.onColumSelect('col-md-12 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 1 cột
                          </button>
                     </div>
                     <div className="row">{staffList}</div>
