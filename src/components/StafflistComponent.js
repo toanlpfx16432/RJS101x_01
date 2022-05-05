@@ -7,7 +7,7 @@ class StaffList extends Component {
         super(pros)
         this.state={
             selectedStaff: null,
-            columDefault: "col-12 col-md-6 col-lg-4 mt-3"
+            columDefault: "col-12 col-md-6 col-lg-4 mt-1 text-center"
         }
     }
 
@@ -26,17 +26,19 @@ class StaffList extends Component {
     renderStaff(staff) {
         if (staff != null) {
             return (
-                <Card>
-                    <CardImg width="100%" src={staff.image} alt={staff.name} />
-                    <CardBody>
-                        <CardTitle>Họ và tên: {staff.name}</CardTitle>
-                        <CardText>Ngày sinh: {dateFormat(staff.doB, 'dd/mm/yyyy')}</CardText>
-                        <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
-                        <CardText>Phòng ban: {staff.department.name}</CardText>
-                        <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
-                        <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
-                    </CardBody>
-                </Card>
+                <div className="row ml-3">
+                    <Card>
+                        <CardImg width="100%" src={staff.image} alt={staff.name} />
+                        <CardBody>
+                            <CardTitle>Họ và tên: {staff.name}</CardTitle>
+                            <CardText>Ngày sinh: {dateFormat(staff.doB, 'dd/mm/yyyy')}</CardText>
+                            <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
+                            <CardText>Phòng ban: {staff.department.name}</CardText>
+                            <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
+                            <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
+                        </CardBody>
+                    </Card>
+                </div>
             )
         } else {
             return (
@@ -60,18 +62,18 @@ class StaffList extends Component {
         
         return (
                 <div className="container">
-                    <div className="row m-4">
-                        <button onClick={() => this.onColumSelect('col-md-2 mt-1')} className='btn btn-success mr-3'> 6 cột
+                    <div className="row m-3">
+                        <button onClick={() => this.onColumSelect('col-md-2 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 6 cột
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-3 mt-1')} className='btn btn-success mr-3'> 4 cột
+                        <button onClick={() => this.onColumSelect('col-md-3 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 4 cột
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-6 mt-1')} className='btn btn-success mr-3'> 2 cột 
+                        <button onClick={() => this.onColumSelect('col-md-6 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 2 cột 
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-12 mt-1')} className='btn btn-success mr-3'> 1 cột
+                        <button onClick={() => this.onColumSelect('col-md-12 mt-1 text-center')} className='btn btn-secondary btn-lg mr-4'> 1 cột
                          </button>
                     </div>
                     <div className="row">{staffList}</div>
-                    <div className="row mt-5">
+                    <div className="row mt-3">
                         {this.renderStaff(this.state.selectedStaff)}
                     </div>
                 </div>
