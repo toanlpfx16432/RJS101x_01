@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 import {Card, CardBody, CardImg, CardText, CardTitle}from 'reactstrap';
 class DishDetail extends Component {
-    constructor(props){
-        super(props);
-        this.state={}
-    }
-
-    renderDish(x){
+    renderDish(dish){
         return(
             <div className='col-12 col-md-5 m-1'>
-                <Card key={x.id}>
-                    <CardImg src={x.image} alt={x.name} />
+                <Card key={dish.id}>
+                    <CardImg width="100%" src={dish.image} value={dish.name} />
                     <CardBody>
-                        <CardTitle>{x.name}</CardTitle>
-                        <CardText>{x.description}</CardText>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
             </div>
@@ -28,7 +23,7 @@ class DishDetail extends Component {
                         return(
                             <li key={x.id}>
                                 <div>{x.comment}</div>
-                                <div>-- {x.author}, {x.date}</div>
+                                <div>-- {x.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</div>
                             </li>
                         );
                     })}
@@ -36,15 +31,19 @@ class DishDetail extends Component {
              </div>
         )} 
     render(){
-        if (this.props.dish!=null){return(
+        if (this.props.dish!=null){
+            return(
                 <div className='container'>
-                <div className="row">
-                    {this.renderDish(this.props.dish)}
-                    {this.renderComments(this.props.dish.comments)}
+                    <div className="row">
+                        {this.renderDish(this.props.dish)}
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
-                </div>
+            )
+        } else {
+            return(
+                <div></div>
             )}
-        else {return(<div></div>)}
 
     }
 }
