@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
 
 class StaffList extends Component {
@@ -22,40 +23,15 @@ class StaffList extends Component {
             columDefault:col
         })
     }
-
-    renderStaff(staff) {
-        if (staff != null) {
-            return (
-                <div className="row ml-3">
-                    <Card>
-                        <CardImg width="100%" src={staff.image} alt={staff.name} />
-                        <CardBody>
-                            <CardTitle>Họ và tên: {staff.name}</CardTitle>
-                            <CardText>Ngày sinh: {dateFormat(staff.doB, 'dd/mm/yyyy')}</CardText>
-                            <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
-                            <CardText>Phòng ban: {staff.department.name}</CardText>
-                            <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
-                            <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
-                        </CardBody>
-                    </Card>
-                </div>
-            )
-        } else {
-            return (
-                <div></div>
-            )
-        }
-    }
-
     render() {
         const staffList = this.props.staffs.map((staff) => {
             return (
                 <div className={this.state.columDefault}>
-                    <Card key={staff.id} onClick={() => this.onStaffSelect(staff)} >
-                        <CardBody>
+                    <Card className='mt-4'>
+                    <Link to={`/staffs/${staff.id}`} >
                             <CardImg width="100%" src={staff.image} alt={staff.name} />
                             <CardTitle>{staff.name}</CardTitle>
-                        </CardBody>
+                    </Link>
                     </Card>
                 </div>
             )
@@ -70,13 +46,8 @@ class StaffList extends Component {
                         </button>
                         <button onClick={() => this.onColumSelect('col-md-6 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 2 cột 
                         </button>
-                        <button onClick={() => this.onColumSelect('col-md-12 mt-1 text-center')} className='btn btn-success btn-lg mr-4'> 1 cột
-                         </button>
                     </div>
                     <div className="row">{staffList}</div>
-                    <div className="row mt-3">
-                        {this.renderStaff(this.state.selectedStaff)}
-                    </div>
                 </div>
         )
     }
