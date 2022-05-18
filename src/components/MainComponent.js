@@ -7,6 +7,7 @@ import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import StaffList from './StafflistComponent';
 import StaffDetail from './StaffdetailComponent';
 import Department from './DepartmentComponent';
+import Salary from './SalaryComponent';
 
 function Main() {
 
@@ -28,6 +29,7 @@ function Main() {
                 <Route exact path='/staffs' component={() => <StaffList staffs={staffs.staffs} />} />
                 <Route path='/staffs/:staffid' component={StaffWithId}/>
                 <Route path='/department' component={() => <Department dept={staffs.department} />}/>
+                <Route path='/salary' component={() => <Salary salary={staffs.staffs} />}/>
             </Switch>
             <Footer />
         </div>
