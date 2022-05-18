@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, NavItem, Collapse} from 'reactstrap';
 import Footer from './FooterComponent';
 import Header from './HeaderComponent';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import StaffList from './StafflistComponent';
 import StaffDetail from './StaffdetailComponent';
@@ -30,6 +30,7 @@ function Main() {
                 <Route path='/staffs/:staffid' component={StaffWithId}/>
                 <Route path='/department' component={() => <Department dept={staffs.department} />}/>
                 <Route path='/salary' component={() => <Salary salary={staffs.staffs} />}/>
+                <Redirect to="/staffs" />
             </Switch>
             <Footer />
         </div>

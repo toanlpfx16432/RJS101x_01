@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import dateFormat from "dateformat";
 
 class StaffList extends Component {
     constructor(pros) {
