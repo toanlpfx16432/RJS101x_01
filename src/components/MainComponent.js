@@ -6,6 +6,7 @@ import {Switch, Route} from 'react-router-dom';
 import { DEPARTMENTS, STAFFS } from '../shared/staffs';
 import StaffList from './StafflistComponent';
 import StaffDetail from './StaffdetailComponent';
+import Department from './DepartmentComponent';
 
 function Main() {
 
@@ -26,6 +27,7 @@ function Main() {
             <Switch>
                 <Route exact path='/staffs' component={() => <StaffList staffs={staffs.staffs} />} />
                 <Route path='/staffs/:staffid' component={StaffWithId}/>
+                <Route path='/department' component={() => <Department dept={staffs.department} />}/>
             </Switch>
             <Footer />
         </div>

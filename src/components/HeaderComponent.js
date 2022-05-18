@@ -19,12 +19,12 @@ function Header() {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className='nav-link' to='/staffs'>
+                                <NavLink className='nav-link' to='/department'>
                                     <span className='fa fa-users fa-lg'></span> Phòng Ban
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className='nav-link' to='/staffs'>
+                                <NavLink className='nav-link' to='/salary'>
                                     <span className='fa fa-users fa-lg'></span> Bảng Lương
                                 </NavLink>
                             </NavItem>
