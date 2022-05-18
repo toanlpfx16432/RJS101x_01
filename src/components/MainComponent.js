@@ -8,12 +8,7 @@ import StaffDetail from './StaffdetailComponent';
 import Department from './DepartmentComponent';
 import Salary from './SalaryComponent';
 
-// function Main() {
 
-//     const [staffs, setnhanvien] = useState({
-//         staffs: STAFFS,
-//         department: DEPARTMENTS
-//     })
 class Main extends Component {
 
     constructor(props){
@@ -39,7 +34,7 @@ class Main extends Component {
                     <Route exact path='/staffs' component={() => <StaffList staffs={this.state.staffs} />} />
                     <Route path='/staffs/:staffid' component={StaffWithId}/>
                     <Route exact path='/department' component={() => <Department dept={this.state.department} />}/>
-                    <Route exact path='/salary' component={() => <Salary salary={this.state.staffs} />}/>
+                    <Route exact path='/salary' component={() => <Salary staffs={this.state.staffs} />}/>
                     <Redirect to='/staffs' />
                 </Switch>
                 <Footer />

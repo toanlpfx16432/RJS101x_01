@@ -7,10 +7,10 @@ function RenderStaff({staff}){
     if (staff != null) {
         return(
             <div className='row'>
-                <div className='col-3 col-md-4 col-lg-3'>
+                <div className='col-6 col-md-4 col-lg-3'>
                     <CardImg src={staff.image} alt={staff.name} />
                 </div>
-                <div className='col-9 col-md-8 col-lg-9'>
+                <div className='col-6 col-md-8 col-lg-9'>
                     <CardTitle>Họ và tên: {staff.name}</CardTitle>
                     <CardText>Ngày sinh: {dateFormat(staff.doB, 'dd/mm/yyyy')}</CardText>
                     <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
@@ -36,10 +36,7 @@ function StaffDetail(props) {
                         <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
                         <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
                     </Breadcrumb>
-                    <div className="col-12">
-                        <h3>{props.staff.name}</h3>
-                        <hr />
-                    </div>                
+                    <hr />            
                 </div>
                 <div className="row">
                     <div className="col-12">

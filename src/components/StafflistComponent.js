@@ -38,6 +38,9 @@ class StaffList extends Component {
         
         return (
                 <div className="container">
+                    <div className="row">
+                        <h2>Danh sách nhân viên</h2>
+                    </div>
                     <div className="row m-3">
                         <h3>Chế độ hiển thị:</h3>
                         <button onClick={() => this.onColumSelect('col-md-2 text-center')} className='btn btn-success btn-lg ml-4'> 6 cột
@@ -48,7 +51,6 @@ class StaffList extends Component {
                         </button>
                     </div>
                     <hr />
-                    <h2>Nhân viên</h2>
                     <div className="row">{staffList}</div>
                 </div>
         )

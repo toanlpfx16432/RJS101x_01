@@ -17,14 +17,14 @@ function RenderDept (props) {
 function Department (props) {
     const departments = props.dept.map((department) => {
         return(
-            <div className="col-12 col-md-6 col-lg-4 mt-2 mb-2" key={department.id}>
+            <div className="col-12 col-md-6 col-lg-4 mt-3 mb-3" key={department.id}>
                 <RenderDept dept={department} />
             </div>
         )
     });
     return(
         <div className="container">
-            <div className="row sahdow m-3">
+            <div className="row m-3">
                 {departments}
             </div>
         </div>
