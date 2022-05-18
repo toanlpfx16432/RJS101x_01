@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import {Navbar, NavbarBrand, Nav, NavbarToggler, NavItem, Collapse} from 'reactstrap';
+import React, { Component } from 'react';
 import Footer from './FooterComponent';
 import Header from './HeaderComponent';
 import {Switch, Route, Redirect} from 'react-router-dom';
@@ -9,31 +8,43 @@ import StaffDetail from './StaffdetailComponent';
 import Department from './DepartmentComponent';
 import Salary from './SalaryComponent';
 
-function Main() {
+// function Main() {
 
-    const [staffs, setnhanvien] = useState({
+//     const [staffs, setnhanvien] = useState({
+//         staffs: STAFFS,
+//         department: DEPARTMENTS
+//     })
+class Main extends Component {
+
+    constructor(props){
+      super(props);
+  
+      this.state = {
         staffs: STAFFS,
         department: DEPARTMENTS
-    })
+      };
+    }
+  
+    render() {
+        const StaffWithId = ({match}) => {
+            return (
+            <StaffDetail staff = {STAFFS.filter((staff) => staff.id === parseInt(match.params.staffid,10))[0]} />
+            )
+        }
 
-    const StaffWithId = ({match}) => {
         return (
-        <StaffDetail staff = {STAFFS.filter((staff) => staff.id === parseInt(match.params.staffid,10))[0]} />
+            <div>
+                <Header />
+                <Switch>
+                    <Route exact path='/staffs' component={() => <StaffList staffs={this.state.staffs} />} />
+                    <Route path='/staffs/:staffid' component={StaffWithId}/>
+                    <Route exact path='/department' component={() => <Department dept={this.state.department} />}/>
+                    <Route exact path='/salary' component={() => <Salary salary={this.state.staffs} />}/>
+                    <Redirect to='/staffs' />
+                </Switch>
+                <Footer />
+            </div>
         )
     }
-
-    return (
-        <div>
-            <Header />
-            <Switch>
-                <Route exact path='/staffs' component={() => <StaffList staffs={staffs.staffs} />} />
-                <Route path='/staffs/:staffid' component={StaffWithId}/>
-                <Route path='/department' component={() => <Department dept={staffs.department} />}/>
-                <Route path='/salary' component={() => <Salary salary={staffs.staffs} />}/>
-                <Redirect to="/staffs" />
-            </Switch>
-            <Footer />
-        </div>
-    )
 }
 export default Main

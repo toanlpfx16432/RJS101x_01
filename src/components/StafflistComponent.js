@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class StaffList extends Component {
