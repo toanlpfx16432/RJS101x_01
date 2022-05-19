@@ -24,7 +24,7 @@ function Salary (props) {
     const displaysalary=
         props.staffs
         .sort((a,b)=>
-            statesSalary==="salary"? parseInt(a.salaryScale*3000000+a.overTime*200000/8) - parseInt(b.salaryScale*3000000+b.overTime*200000/8):a.id-b.id
+            statesSalary=="salary"? parseInt(a.salaryScale*3000000+a.overTime*200000) - parseInt(b.salaryScale*3000000+b.overTime*200000):a.id-b.id
         )
         .filter((staff)=>{
             if(staff.name.toLowerCase().includes(name.toLowerCase())){return(staff)}
