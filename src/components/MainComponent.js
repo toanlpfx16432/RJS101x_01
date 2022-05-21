@@ -8,7 +8,6 @@ import StaffDetail from './StaffdetailComponent';
 import Department from './DepartmentComponent';
 import Salary from './SalaryComponent';
 
-
 class Main extends Component {
 
     constructor(props){

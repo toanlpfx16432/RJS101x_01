@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom';
 
 function RenderSalary ({staff}) {
     return(
-        <Card kex={staff.id} className='col-md-4 col-sm-6 col-12'>
+        <Card className='col-md-4 col-sm-6 col-12'>
             <CardBody>
-                <CardTitle className='text-center'><h3>{staff.name}</h3></CardTitle>
+                <CardTitle className='text-center'>{staff.name}</CardTitle>
                 <CardText>Mã nhân viên: {staff.id}</CardText>
                 <CardText>Hệ số lương: {staff.salaryScale}</CardText>
                 <CardText>Số ngày làm thêm: {staff.overTime}</CardText>
-                <Breadcrumb>Lương: {parseInt(staff.salaryScale
+                <Breadcrumb>Lương: {Number(staff.salaryScale
                 *3000000+staff.overTime*200000)}</Breadcrumb>
             </CardBody>
         </Card>
@@ -24,14 +24,14 @@ function Salary (props) {
     const displaysalary=
         props.staffs
         .sort((a,b)=>
-            statesSalary=="salary"? parseInt(a.salaryScale*3000000+a.overTime*200000) - parseInt(b.salaryScale*3000000+b.overTime*200000):a.id-b.id
+            statesSalary ==="salary"? Number(a.salaryScale*3000000+a.overTime*200000) - Number(b.salaryScale*3000000+b.overTime*200000):a.id-b.id
         )
         .filter((staff)=>{
             if(staff.name.toLowerCase().includes(name.toLowerCase())){return(staff)}
             else{return 0}
         })
         .map((staff) => {
-            return(<RenderSalary staff={staff} />)
+            return(<RenderSalary key={staff.id} staff={staff} />)
         })
 
     return(
@@ -46,8 +46,8 @@ function Salary (props) {
             <div className="col-md-8">
                 <span className=""><b>Sắp xếp theo: </b></span>
                 <select onChange={()=>{
-                    if (statesSalary!="salary"){return changeStateSalary("salary")}
-                    else if (statesSalary=="salary"){return changeStateSalary("id")}
+                    if (statesSalary !== "salary"){return changeStateSalary("salary")}
+                    else if (statesSalary === "salary"){return changeStateSalary("id")}
                 }}>
                     <option >Mã nhân viên</option>
                     <option >Mức lương</option>

@@ -25,7 +25,7 @@ class StaffList extends Component {
     render() {
         const staffList = this.props.staffs.map((staff) => {
             return (
-                <div className={this.state.columDefault}>
+                <div key={staff.id} className={this.state.columDefault}>
                     <Card className='mt-4'>
                         <Link to={`/staffs/${staff.id}`} >
                                 <CardImg width="100%" src={staff.image} alt={staff.name} />
