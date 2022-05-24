@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState}  from "react";
 import {
   Card,
   CardBody,
@@ -7,23 +7,27 @@ import {
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
+  Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import CommentForm from "./CommentComponent";
 
 function RenderDish({ dish }) {
   return (
-    <div className="col-12 col-md-5 m-1">
-      <Card>
-        <CardImg top src={dish.image} alt={dish.name} />
-        <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
-        </CardBody>
-      </Card>
-    </div>
+    <Card key={dish.id} className="col-12 col-md-5 m-1">
+      <CardImg top src={dish.image} alt={dish.name} />
+      <CardBody>
+        <CardTitle>{dish.name}</CardTitle>
+        <CardText>{dish.description}</CardText>
+      </CardBody>
+    </Card>
   );
 }
 function RenderComments({ comments }) {
+
+  const [isOpen,setState] =useState(false);
+  const toggleModal = () => {setState(!isOpen)};
+
   if (comments != null)
     return (
       <div className="col-12 col-md-5 m-1">
@@ -45,6 +49,8 @@ function RenderComments({ comments }) {
             );
           })}
         </ul>
+        <Button outline onClick={toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comments</Button>
+        <CommentForm isOpen={isOpen} toggle={toggleModal}/>
       </div>
     );
 }
