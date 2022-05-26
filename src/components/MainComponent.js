@@ -1,32 +1,40 @@
 import React, { Component } from "react";
 import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { DEPARTMENTS, STAFFS } from "../shared/staffs";
 import StaffList from "./StafflistComponent";
 import StaffDetail from "./StaffdetailComponent";
 import Department from "./DepartmentComponent";
 import Salary from "./SalaryComponent";
+import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+
+
+const mapStateToProps = state => {
+  return {
+    staffs: state.staffs,
+    departments: state.departments
+  }
+}
 
 class Main extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            staffs: STAFFS,
-            department: DEPARTMENTS,
+            staffs: this.props.staffs,
+            departments: this.props.departments
         };
+
         this.addStaff = this.addStaff.bind(this);
     }
   
     addStaff = (staff) => {
-      const id = Math.floor(Math.random() * 10000 + 1);
-      const newStaff = { id, ...staff };
-      this.setState({
+        var department = this.props.departments.find((item) => item.id == staff.department);
+        const id = Math.floor(Math.random() * 10000 + 1);
+        const newStaff = { id, ...staff };
+        this.setState({
         staffs: [...this.state.staffs, newStaff]
       });
-      console.log(newStaff);
-      console.log(this.state.staffs);
     }
     
     render() {
@@ -56,7 +64,7 @@ class Main extends Component {
                     <Route
                         exact
                         path="/department"
-                        component={() => <Department dept={this.state.department} />}
+                        component={() => <Department dept={this.state.departments} />}
                     />
                     <Route
                         exact
@@ -70,4 +78,4 @@ class Main extends Component {
         );
     }
 }
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
