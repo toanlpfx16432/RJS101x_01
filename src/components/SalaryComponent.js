@@ -11,7 +11,7 @@ function RenderSalary ({staff}) {
                 <CardText>Hệ số lương: {staff.salaryScale}</CardText>
                 <CardText>Số ngày làm thêm: {staff.overTime}</CardText>
                 <Breadcrumb>Lương: {Number(staff.salaryScale
-                *3000000+staff.overTime*200000)}</Breadcrumb>
+                *3000000+staff.overTime*200000).toFixed()}</Breadcrumb>
             </CardBody>
         </Card>
     );
