@@ -60,7 +60,7 @@ class StaffList extends Component {
     render() {
         const required = (val) => val && val.length;
         const maxLength = (len) => (val) => !(val) || (val.length <= len);
-        const minLength = (len) => (val) => val && (val.length >= len);
+        const minLength = (len) => (val) => !(val) || (val.length >= len);
         const staffList = this.props.staffs
             .filter((staff) => {
                 if (this.state.findStaff === "") {
@@ -91,7 +91,7 @@ class StaffList extends Component {
                     <div className="col-12 col-md-6 mt-2">
                         <div className="row">
                             <div className='col-10 col-md-8'>
-                                <h3>Danh Sách Nhân Viên</h3>
+                                <h3>Nhân Viên</h3>
                             </div>
                             <div className='col-2 col-md-4'>
                                 <Button onClick={this.toggleModal}>
