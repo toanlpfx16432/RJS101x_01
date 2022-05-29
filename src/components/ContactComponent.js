@@ -8,7 +8,7 @@ import {
   Row
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Control, LocalForm, Errors } from 'react-redux-form'
+import { Control, Form, Errors, actions } from 'react-redux-form'
  
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -19,13 +19,12 @@ const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val
 class Contact extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(value) {
     console.log("Current State is: " + JSON.stringify(value));
     alert("Current State is: " + JSON.stringify(value));
+    this.props.resetFeedbackForm();
   }
 
   render() {
@@ -94,7 +93,7 @@ class Contact extends Component {
             <h3>Send us your feedback</h3>
           </div>
           <div className="col-12 col-md-9">
-            <LocalForm onSubmit={(value) => this.handleSubmit(value)}>
+            <Form model="feedback" onSubmit={(value) => this.handleSubmit(value)}>
               <Row className="form-group">
                 <Label htmlFor="firstname" md={2}>First Name</Label>
                 <Col md={10}>
@@ -201,7 +200,7 @@ class Contact extends Component {
                         model=".agree"
                         name="agree"
                         className="form-check-input"
-                      />{" "}
+                      />
                      <strong>May me contact you?</strong>
                     </Label>
                   </div>
@@ -237,7 +236,7 @@ class Contact extends Component {
                   </Button>
                 </Col>
               </Row>
-            </LocalForm>
+            </Form>
           </div>
         </div>
       </div>
