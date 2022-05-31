@@ -47,8 +47,8 @@ function RenderComments({ comments, postComment, dishId }) {
           <Stagger in>
           {comments.map((comment) => {
             return (
-              <Fade in>
-                <li key={comment.id}>
+              <Fade key={comment.id} in>
+                <li>
                   <p>{comment.comment}</p>
                   <p>
                     -- {comment.author},{" "}
