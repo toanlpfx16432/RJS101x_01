@@ -3,11 +3,14 @@ import { Card, CardImg, CardTitle, Form, FormGroup, Row, Label,
     Button, Input, Col, Modal, ModalBody, ModalHeader, } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 class StaffList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            staffs: this.props.staffs.staffs,
             findStaff: "",
             columDefault: "col-6 col-md-4 col-lg-2 mt-1 text-center",
             isModalOpen: false,
@@ -22,9 +25,10 @@ class StaffList extends Component {
         this.setState({
           isModalOpen: !this.state.isModalOpen
         });
-        }
+    }
 
     filterStaff() {
+        console.log('finstaff', this.findStaff.value)
         this.setState({
             findStaff: this.findStaff.value
         });
@@ -35,20 +39,9 @@ class StaffList extends Component {
         event.preventDefault();
     }
 
-    handleNewstaff(value) {
-        const newStaff = {
-            name: value.name,
-            doB: value.doB,
-            salaryScale: value.salaryScale,
-            startDate: value.startDate,
-            department: value.department,
-            annualLeave: value.annualLeave,
-            overTime: value.overTime,
-            salary: value.salary,
-            image: '/assets/images/alberto.png',
-        };
-
-        this.props.onAdd(newStaff);
+    handleNewstaff(values) {
+        this.toggleModal();
+        this.props.postStaff(values.name, values.doB, values.salaryScale, values.startDate, values.departmentId, values.annualLeave, values.overTime);
     } 
 
     onColumSelect(col) {
@@ -61,7 +54,7 @@ class StaffList extends Component {
         const required = (val) => val && val.length;
         const maxLength = (len) => (val) => !(val) || (val.length <= len);
         const minLength = (len) => (val) => !(val) || (val.length >= len);
-        const staffList = this.props.staffs
+        const staffList = this.state.staffs
             .filter((staff) => {
                 if (this.state.findStaff === "") {
                     return staff;
@@ -75,15 +68,42 @@ class StaffList extends Component {
             .map((staff) => {
             return (
                 <div key={staff.id} className={this.state.columDefault}>
-                    <Card className="mt-4">
-                        <Link to={`/staffs/${staff.id}`}>
-                            <CardImg width="100%" src={staff.image} alt={staff.name} />
-                            <CardTitle>{staff.name}</CardTitle>
-                        </Link>
-                    </Card>
+                    <FadeTransform
+                        in
+                        transformProps={{
+                            exitTransform: 'scale(0.5) translateY(-50%)'
+                        }}>
+                        <Card className="mt-4">
+                            <Link to={`/staffs/${staff.id}`}>
+                                <CardImg width="100%" src={staff.image} alt={staff.name} />
+                                <CardTitle style = {{color:"black", textDecoration:"none"}}>{staff.name}</CardTitle>
+                            </Link>
+                        </Card>
+                        <Button className="m-2" color="danger" onClick={()=>this.props.deleteStaff(staff.id)}>Xóa</Button>
+                    </FadeTransform>
                 </div>
             );
         });
+
+        if (this.props.staffs.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (this.props.staffs.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">            
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+        else {
 
         return (
             <div className="container">
@@ -94,7 +114,7 @@ class StaffList extends Component {
                                 <h3>Nhân Viên</h3>
                             </div>
                             <div className='col-2 col-md-4'>
-                                <Button onClick={this.toggleModal}>
+                                <Button onClick={this.toggleModal}> 
                                     <span className='fa fa-plus fa-lg'></span>
                                 </Button>
                             </div>
@@ -199,12 +219,12 @@ class StaffList extends Component {
                             <Row className="form-group">
                                 <Label htmlFor="department" md={4}>Phòng ban</Label>
                                 <Col md={8}>
-                                    <Control.select model=".department" id="department" name="department" defaultValue='Sale' className="form-control">     
-                                    <option>Sale</option>
-                                    <option>HR</option>
-                                    <option>Marketing</option>
-                                    <option>IT</option>
-                                    <option>Finance</option>
+                                    <Control.select model=".departmentId" id="departmentId" name="departmentId" defaultValue="Dept01" className="form-control">     
+                                            <option value="Dept01">Sale</option>
+                                            <option value="Dept02">HR</option>
+                                            <option value="Dept03">Marketing</option>
+                                            <option value="Dept04">IT</option>
+                                            <option value="Dept05">Finance</option>
                                     </Control.select>
                                 </Col>
                             </Row>
@@ -270,9 +290,13 @@ class StaffList extends Component {
                         </LocalForm>
                     </ModalBody>
                 </Modal>
-                <div className="row">{staffList}</div>
+                <Stagger in>
+                    <Fade in>
+                        <div className="row">{staffList}</div>
+                    </Fade>
+                </Stagger>
             </div>
-        );
+        )}
     }
 }
 

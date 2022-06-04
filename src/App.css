@@ -11,7 +11,7 @@
 }
 
 .footer{
-    background-color: rgba(128, 128, 128, 0.192);
+    background-color: #28a745;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
@@ -29,7 +29,7 @@ address{
 }
 
 .navbar-dark {
-    background-color: rgba(128, 128, 128, 0.747);
+    background-color: #28a745;
 }
 .page-enter {
     opacity: 0.01;
