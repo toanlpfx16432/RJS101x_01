@@ -21,7 +21,7 @@ function RenderSalary ({salary}) {
 
 function Salary (props) {
 
-    if (props.salary.isLoading) {
+    if (props.isLoading) {
         return (
             <div className="container">
                 <div className="row">
@@ -29,7 +29,7 @@ function Salary (props) {
                 </div>
             </div>
         );
-    } else if (props.salary.errMess) {
+    } else if (props.errMess) {
         return (
             <div className="container">
                 <div className="row">

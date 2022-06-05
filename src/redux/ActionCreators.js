@@ -36,6 +36,7 @@ export const postStaff = ( name, doB, salaryScale, startDate, departmentId, annu
       })
     .then(response => response.json())
     .then(response => dispatch(addStaffs(response)))
+    .then(() => dispatch(fetchSalary()))
     .catch(error => { console.log('post comments', error.message); alert('Your could not posted new staff\nError: ' + error.message); });
 };
 
@@ -49,6 +50,7 @@ export const deleteStaff = (id) => (dispatch) => {
     return fetch(baseUrl + `staffs/${id}`, {
     method: 'DELETE',
   }).then(() => dispatch(deletedStaff(id)))
+    .then(() => dispatch(fetchSalary()))
 }
 
 export const patchStaff = ( staffId, name, doB, salaryScale, startDate, departmentId, annualLeave, overTime ) => (dispatch) => {
@@ -85,6 +87,7 @@ export const patchStaff = ( staffId, name, doB, salaryScale, startDate, departme
       })
       .then(response => response.json())
       .then(response => dispatch(addStaffs(response)))
+      .then(() => dispatch(fetchSalary()))
       .catch(error => { console.log('patch comments', error.message); alert('Your could not patch staff\nError: ' + error.message); });
 };
 
