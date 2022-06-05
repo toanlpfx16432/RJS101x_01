@@ -85,7 +85,7 @@ class Main extends Component {
                         <Route path="/department/:departmentId" component={DepartmentWithId} />
                         <Route path="/salary" component={() => 
                             <Salary
-                            salary={this.props.salary.salary}
+                            salary={this.props.salary}
                             isLoading={this.props.salary.isLoading}
                             errMess={this.props.salary.errMess}
                         />} />

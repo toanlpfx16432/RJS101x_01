@@ -36,7 +36,6 @@ export const postStaff = ( name, doB, salaryScale, startDate, departmentId, annu
       })
     .then(response => response.json())
     .then(response => dispatch(addStaffs(response)))
-    .then(salary => dispatch(addSalary(salary)))
     .catch(error => { console.log('post comments', error.message); alert('Your could not posted new staff\nError: ' + error.message); });
 };
 

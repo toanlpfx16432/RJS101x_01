@@ -4,16 +4,16 @@ import {Link} from 'react-router-dom';
 import {Loading} from './LoadingComponent';
 import { Fade, Stagger } from 'react-animation-components';
 
-function RenderSalary ({staffs}) {
+function RenderSalary ({salary}) {
     return(
         <Card className='col-md-4 col-sm-6 col-12'>
             <CardBody>
-                <CardTitle className='text-center'>{staffs.name}</CardTitle>
-                <CardText>Mã nhân viên: {staffs.id}</CardText>
-                <CardText>Hệ số lương: {staffs.salaryScale}</CardText>
-                <CardText>Số ngày làm thêm: {staffs.overTime}</CardText>
-                <Breadcrumb>Lương: {Number(staffs.salaryScale
-                *3000000+staffs.overTime*200000).toFixed()}</Breadcrumb>
+                <CardTitle className='text-center'>{salary.name}</CardTitle>
+                <CardText>Mã nhân viên: {salary.id}</CardText>
+                <CardText>Hệ số lương: {salary.salaryScale}</CardText>
+                <CardText>Số ngày làm thêm: {salary.overTime}</CardText>
+                <Breadcrumb>Lương: {Number(salary.salaryScale
+                *3000000+salary.overTime*200000).toFixed()}</Breadcrumb>
             </CardBody>
         </Card>
     );
@@ -21,20 +21,20 @@ function RenderSalary ({staffs}) {
 
 function Salary (props) {
 
-    if (props.isLoading) {
+    if (props.salary.isLoading) {
         return (
             <div className="container">
-            <div className="row">
-                <Loading />
-            </div>
+                <div className="row">
+                    <Loading />
+                </div>
             </div>
         );
-    } else if (props.errMess) {
+    } else if (props.salary.errMess) {
         return (
             <div className="container">
-            <div className="row">
-                <h4>{this.props.errMess}</h4>
-            </div>
+                <div className="row">
+                    <h4>{this.props.errMess}</h4>
+                </div>
             </div>
         );
     } else if (props.salary != null) {
@@ -43,7 +43,7 @@ function Salary (props) {
         const [statesSalary, changeStateSalary] = useState("");
         const [name,changeName] = useState("");
         const displaysalary=
-            props.salary
+            props.salary.salary
             .sort((a,b)=>
                 statesSalary ==="salary"? Number(a.salaryScale*3000000+a.overTime*200000) - Number(b.salaryScale*3000000+b.overTime*200000):a.id-b.id
             )
@@ -52,7 +52,7 @@ function Salary (props) {
                 else{return 0}
             })
             .map((salary) => {
-                return(<RenderSalary key={salary.id} staffs={salary} />)
+                return(<RenderSalary key={salary.id} salary={salary} />)
             })
 
         return(
