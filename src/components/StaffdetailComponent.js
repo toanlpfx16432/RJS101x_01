@@ -99,7 +99,7 @@ class Staffdetail extends Component {
                                         <Control.text model=".name" id="name" name="name" 
                                             placeholder="Tên Nhân Viên"
                                             className='form-control'
-                                            defaultValue=''
+                                            defaultValue={this.state.staff.name}
                                             validators={{
                                                 required, minLength: minLength(3), maxLength: maxLength(30)
                                             }}
@@ -121,7 +121,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='date' model=".doB" id="doB" name="doB" 
                                             className='form-control'
-                                            defaultValue=''
+                                            defaultValue={(this.state.staff.doB).substring(0, 10)}
                                             validators={{
                                                 required
                                             }}
@@ -141,7 +141,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='date' model=".startDate" id="startDate" name="startDate" 
                                             className='form-control'
-                                            defaultValue=''
+                                            defaultValue={(this.state.staff.startDate).substring(0, 10)}
                                             validators={{
                                                 required
                                             }}
@@ -159,7 +159,7 @@ class Staffdetail extends Component {
                                 <Row className="form-group">
                                     <Label htmlFor="departmentId" md={4}>Phòng ban</Label>
                                     <Col md={8}>
-                                        <Control.select model=".departmentId" id="departmentId" name="departmentId" defaultValue="Dept01"
+                                        <Control.select model=".departmentId" id="departmentId" name="departmentId" defaultValue={this.state.staff.departmentId}
                                             className='form-control'>
                                                 <option value="Dept01">Sale</option>
                                                 <option value="Dept02">HR</option>
@@ -173,7 +173,7 @@ class Staffdetail extends Component {
                                     <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                                     <Col md={8}>
                                         <Control type='number' min="1" max="3" step="0.1" model=".salaryScale" id="salaryScale" name="salaryScale" 
-                                            defaultValue='1'
+                                            defaultValue={this.state.staff.salaryScale}
                                             className='form-control'
                                             validators={{
                                                     required
@@ -194,7 +194,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='number' min="0" model=".annualLeave" id="annualLeave" name="annualLeave" 
                                             className='form-control'
-                                            defaultValue='0'
+                                            defaultValue={this.state.staff.annualLeave}
                                             validators={{
                                                     required
                                                 }}
@@ -214,7 +214,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='number' min="0" model=".overTime" id="overTime" name="overTime" 
                                             className='form-control'
-                                            defaultValue='0'
+                                            defaultValue={this.state.staff.overTime}
                                             validators={{
                                                         required
                                                     }}

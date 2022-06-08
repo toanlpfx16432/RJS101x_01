@@ -76,7 +76,7 @@ class StaffList extends Component {
                         <Card className="mt-4">
                             <Link to={`/staffs/${staff.id}`}>
                                 <CardImg width="100%" src={staff.image} alt={staff.name} />
-                                <CardTitle style = {{color:"black", textDecoration:"none"}}>{staff.name}</CardTitle>
+                                <CardTitle>{staff.name}</CardTitle>
                             </Link>
                         </Card>
                         <Button className="m-2" color="danger" onClick={()=>this.props.deleteStaff(staff.id)}>Xóa</Button>
@@ -232,7 +232,7 @@ class StaffList extends Component {
                                 <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                                 <Col md={8}>
                                     <Control type="number" model=".salaryScale" min="1" max="3" id="salaryScale" name="salaryScale"
-                                        className="form-control" defaultValue='1' validators={{
+                                        className="form-control" value={this.state.staffs.salaryScale} validators={{
                                             required
                                         }}
                                     />
