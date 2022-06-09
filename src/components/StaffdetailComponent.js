@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody, ModalHeader, Row, Label, Col,}from 'reactstrap';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, LocalForm} from 'react-redux-form';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderStaff({staff, finddepartment}){
@@ -61,9 +61,6 @@ class Staffdetail extends Component {
 
     render() {
         if (this.props.staff != null) {
-            const required = (val) => val && val.length;
-            const maxLength = (len) => (val) => !(val) || (val.length <= len);
-            const minLength = (len) => (val) => val && (val.length >= len);
             return(
                 <div className="container">
                     <div className="row">
@@ -99,20 +96,7 @@ class Staffdetail extends Component {
                                         <Control.text model=".name" id="name" name="name" 
                                             placeholder="Tên Nhân Viên"
                                             className='form-control'
-                                            defaultValue={this.state.staff.name}
-                                            validators={{
-                                                required, minLength: minLength(3), maxLength: maxLength(30)
-                                            }}
-                                        />
-                                        <Errors
-                                            className="text-danger"
-                                            model=".name"
-                                            show="touched"
-                                            messages={{
-                                                required: 'Yêu cầu nhập ',
-                                                minLength: 'Yêu cầu nhiều hơn 2 ký tự',
-                                                maxLength: 'Tên nhân viên phải ít hơn 30 ký tự'
-                                            }}
+                                            defaultValue={this.state.staff.name}                                          
                                         />
                                     </Col>
                                 </Row>
@@ -121,18 +105,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='date' model=".doB" id="doB" name="doB" 
                                             className='form-control'
-                                            defaultValue={(this.state.staff.doB).substring(0, 10)}
-                                            validators={{
-                                                required
-                                            }}
-                                        />
-                                        <Errors
-                                            className="text-danger"
-                                            model=".doB"
-                                            show="touched"
-                                            messages={{
-                                                required: 'Yêu cầu nhập ',
-                                            }}
+                                            defaultValue={(this.state.staff.doB).substring(0, 10)}                                           
                                         />   
                                     </Col>
                                 </Row>
@@ -141,18 +114,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='date' model=".startDate" id="startDate" name="startDate" 
                                             className='form-control'
-                                            defaultValue={(this.state.staff.startDate).substring(0, 10)}
-                                            validators={{
-                                                required
-                                            }}
-                                        />
-                                        <Errors
-                                            className="text-danger"
-                                            model=".startDate"
-                                            show="touched"
-                                            messages={{
-                                                required: 'Yêu cầu nhập ',
-                                            }}
+                                            defaultValue={(this.state.staff.startDate).substring(0, 10)}                                          
                                         />   
                                     </Col>
                                 </Row>
@@ -175,18 +137,7 @@ class Staffdetail extends Component {
                                         <Control type='number' min="1" max="3" step="0.1" model=".salaryScale" id="salaryScale" name="salaryScale" 
                                             defaultValue={this.state.staff.salaryScale}
                                             className='form-control'
-                                            validators={{
-                                                    required
-                                                }}
-                                            />
-                                            <Errors
-                                                className="text-danger"
-                                                model=".salaryScale"
-                                                show="touched"
-                                                messages={{
-                                                    required: 'Yêu cầu nhập ',
-                                                }}
-                                            />      
+                                        />      
                                     </Col>
                                 </Row>
                                 <Row className="form-group">
@@ -194,18 +145,7 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='number' min="0" model=".annualLeave" id="annualLeave" name="annualLeave" 
                                             className='form-control'
-                                            defaultValue={this.state.staff.annualLeave}
-                                            validators={{
-                                                    required
-                                                }}
-                                            />
-                                            <Errors
-                                                className="text-danger"
-                                                model=".annualLeave"
-                                                show="touched"
-                                                messages={{
-                                                    required: 'Yêu cầu nhập ',
-                                                }}
+                                            defaultValue={this.state.staff.annualLeave}                                            
                                         /> 
                                     </Col>
                                 </Row>
@@ -214,19 +154,8 @@ class Staffdetail extends Component {
                                     <Col md={8}>
                                         <Control type='number' min="0" model=".overTime" id="overTime" name="overTime" 
                                             className='form-control'
-                                            defaultValue={this.state.staff.overTime}
-                                            validators={{
-                                                        required
-                                                    }}
-                                            />
-                                            <Errors
-                                                className="text-danger"
-                                                model=".overTime"
-                                                show="touched"
-                                                messages={{
-                                                    required: 'Yêu cầu nhập ',
-                                                }}
-                                            /> 
+                                            defaultValue={this.state.staff.overTime}                                          
+                                        /> 
                                     </Col>
                                 </Row>
                                 <Row className="form-group">
