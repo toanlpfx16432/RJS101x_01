@@ -6,11 +6,13 @@ import Staffdetail from "./StaffdetailComponent";
 import Department from "./DepartmentComponent";
 import Departmentdetail from "./Departmentdetailcomponent";
 import Salary from "./SalaryComponent";
+import Text from "./test";
 import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postStaff, patchStaff, deleteStaff, fetchStaffs, fetchDepartment, fetchSalary} from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+// dùng kết nối state của component với state trong store của redux
 const mapStateToProps = (state) => {
   return {
     staffs: state.staffs,
@@ -19,6 +21,7 @@ const mapStateToProps = (state) => {
   }
 }
 
+// dùng kết nối các method của component với các hành động của store tới Action của redux
 const mapDispatchToProps = (dispatch) => ({
     fetchStaffs: () => {dispatch(fetchStaffs())},
     fetchDepartment: () => {dispatch(fetchDepartment())},  
@@ -29,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Main extends Component {
-
+    // được gọi khi chương trình chạy lần đầu tiên, chạy sau render 
     componentDidMount() {
         this.props.fetchStaffs();
         this.props.fetchDepartment();
@@ -62,6 +65,7 @@ class Main extends Component {
 
         return (
             <div>
+                <Text />
                 <Header />
                 <TransitionGroup>
                     <CSSTransition  key={this.props.location.key} classNames="page" timeout={300}>

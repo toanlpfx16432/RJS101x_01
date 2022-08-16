@@ -164,20 +164,6 @@ export const addDepartment = (department) => ({
     payload: department
 });
 
-export const salaryLoading = () => ({
-  type: ActionTypes.SALARY_LOADING
-});
-
-export const salaryFailed = (errmess) => ({
-  type: ActionTypes.SALARY_FAILED,
-  payload: errmess
-});
-
-export const addSalary = (salary) => ({
-  type: ActionTypes.ADD_SALARY,
-  payload: salary
-});
-
 export const fetchSalary = () => (dispatch) => {    
   dispatch(salaryLoading(true));
 
@@ -199,3 +185,17 @@ return fetch(baseUrl + 'staffsSalary')
 .then(salary => dispatch(addSalary(salary)))
 .catch(error => dispatch(salaryFailed(error.message)));
 };
+
+export const salaryLoading = () => ({
+  type: ActionTypes.SALARY_LOADING
+});
+
+export const salaryFailed = (errmess) => ({
+  type: ActionTypes.SALARY_FAILED,
+  payload: errmess
+});
+
+export const addSalary = (salary) => ({
+  type: ActionTypes.ADD_SALARY,
+  payload: salary
+});
